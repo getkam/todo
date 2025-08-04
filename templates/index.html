@@ -13,8 +13,8 @@
         {% for todo in todos %}
         <li>
             {{ todo.task }} {% if not todo.done %}
-            <form action="/complete/{{ todo._id}}" method="POST" style="display:inline">
-                <button type="sumbit">◻️</button>
+            <form action="/complete/{{ todo._id }}" method="POST" style="display:inline">
+                <button type="submit">◻️</button>
             </form>
             {% else %}✅{% endif %}
         </li>
