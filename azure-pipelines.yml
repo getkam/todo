@@ -26,4 +26,21 @@ stages:
                   pytest
                 displayName: "Run pytest"
                 env:
-                  MONGO_URI: $(MONGO_URI)  
+                  MONGO_URI: $(MONGO_URI)
+    - stage: Docker_build_and_push
+      displayName: Docker build and Push
+      jobs:
+        - job: docker_build_and_push
+          displayName: Docker build and push
+          steps:
+            - task: Docker@2
+              inputs:
+                containerRegistry: 'mgConn'
+                command: 'login'
+            - task: Docker@2
+              inputs:
+                containerRegistry: 'mgConn'
+                repository: 'todo-app'
+                command: 'buildAndPush'
+                Dockerfile: '**/Dockerfile'
+                tags: '$(Build.BuildId)'
