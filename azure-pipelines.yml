@@ -10,20 +10,19 @@ stages:
       jobs:
         - job: build_and_test
           displayName: Build and Test
+          pool:
+              vmImage: 'ubuntu-latest'
           steps:
               - task: UsePythonVersion@0
                 inputs:
                     versionSpec: 3.11
                 displayName: Use Python 3.11
               - script: |
-                    python -m venv .venv
-                    source .venv/bin/activate
                     pip install --upgrade pip
                     pip install -r requirements.txt
                 displayName: 'Installing dependencies'    
               - script: |
                   echo "Running tests..."
-                  source .venv/bin/activate
                   pytest
                 displayName: "Run pytest"
                 env:
