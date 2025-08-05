@@ -3,6 +3,12 @@ name: ToDoApp
 trigger:
 - main
 
+resources:
+  repositories:
+    - repository: self
+      type: git
+      name: getkam/todo
+      connection: github.com_getkam
 
 stages:
     - stage: Build_and_Test
