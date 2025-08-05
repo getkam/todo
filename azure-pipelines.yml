@@ -64,4 +64,6 @@ stages:
               inputs:
                 azureSubscription: 'armConn'
                 appName: 'ToDoApp'
-                containers: 'devopslearningacr/todo-app:latest'
+                containers: 'devopslearningacr.azurecr.io/todo-app:latest'
+              env:
+                MONGO_URI: $(MONGO_URI)
