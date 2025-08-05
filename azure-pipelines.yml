@@ -53,3 +53,15 @@ stages:
                       latest
                       $(Build.BuildId)
                       $(Build.SourceVersion)
+    - stage: Deploy
+      displayName: Delpoy Web App
+      dependsOn: Docker_build_and_push
+      jobs: 
+        - job: deploy_we_app
+          displayName: Deploy to web app
+          steps:
+            - task: AzureWebAppContainer@1
+              inputs:
+                azureSubscription: 'armConn'
+                appName: 'ToDoApp'
+                containers: 'devopslearningacr/todo-app:latest'
